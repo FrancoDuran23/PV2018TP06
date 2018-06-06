@@ -22,6 +22,15 @@ public class TablaUsuario {
     }
 
     public Usuario validarUsuario(String nombreUs, String passUs) {
+        Usuario usuario=null;
+        for(Usuario u:usuarios){
+            if(u.getContraseña().equals(passUs)&& u.getUsurio().equals(nombreUs)){
+                usuario=u;
+                break;
+            }
+            return usuario;
+            
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      

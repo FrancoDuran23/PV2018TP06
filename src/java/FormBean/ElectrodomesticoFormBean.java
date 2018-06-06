@@ -54,13 +54,11 @@ public class ElectrodomesticoFormBean {
         this.listadoM = listadoM;
         this.listaMarcas = listaMarcas;
     }
-     public void agregarElectrodomestico()throws ParseException{
-        //SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        //Date unafecha = formato.parse(getFecha());
-        setUnElectrodomestico(new Electrodomestico(getCodigo(),getTipo(),getMarca(),getFecha()));
+ 
+    public void agregarElectrodomestico(){
+        setUnElectrodomestico(new Electrodomestico(getCodigo(), getTipo(), getMarca(),getFecha()));        
         setLista(getElectrodomestico().agregarElectrodomestico(getUnElectrodomestico()));
     }
-
     /**
      * @return the codigo
      */
@@ -186,8 +184,4 @@ public class ElectrodomesticoFormBean {
     public void setListaMarcas(ArrayList <Marca> listaMarcas) {
         this.listaMarcas = listaMarcas;
     }
-
-    
-
- 
 }

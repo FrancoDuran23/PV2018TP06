@@ -9,7 +9,7 @@ import Tabla.Usuario.TablaUsuario;
 import Usuario.Usuario;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -53,6 +53,24 @@ public String validarUsuario(){
         }
         return resultado;
     }
+   public String getNombreUsuarioValidado(){
+       Usuario usuario=(Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado");
+       return usuario.getUsurio();     
+    
+    }
+   public String cerrarSesion(){
+       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+       FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Sesion Cerrada","Sesion Cerrada");
+       FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+       String resultado="/login";
+       return resultado;
+   }
+   public boolean verificarSesion(){
+       boolean sesionValida=false;
+       if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado")!=null)
+           sesionValida=true;
+       return sesionValida;
+   }
     /**
      * @return the nombreUs
      */
