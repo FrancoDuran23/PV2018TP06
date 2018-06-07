@@ -20,8 +20,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class LoginFormBeans {
-    private String nombreUs;
-    private String passUs;
+    private String usurio;
+    private String contraseña;
 
     /**
      * Creates a new instance of LoginFormBeans
@@ -29,15 +29,17 @@ public class LoginFormBeans {
     public LoginFormBeans() {
     }
 
-    public LoginFormBeans(String nombreUs, String passUs) {
-        this.nombreUs = nombreUs;
-        this.passUs = passUs;
+    public LoginFormBeans(String usurio, String contraseña) {
+        this.usurio = usurio;
+        this.contraseña = contraseña;
     }
+
+  
 public String validarUsuario(){
         String resultado = null;
         Usuario usuario = null;
         TablaUsuario unUsuario = new TablaUsuario();
-        usuario = unUsuario.validarUsuario(nombreUs, passUs);
+        usuario = unUsuario.validarUsuario(usurio, contraseña);
         if(usuario==null){
             FacesMessage facesMessage =
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -49,7 +51,7 @@ public String validarUsuario(){
             "Usuario Valido", "Usuario Valido");
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("UsuarioValidado", usuario);
-        resultado = " menu";
+        resultado = "/Electrodomesticos";
         }
         return resultado;
     }
@@ -62,41 +64,43 @@ public String validarUsuario(){
        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
        FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Sesion Cerrada","Sesion Cerrada");
        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-       String resultado="/login";
+       String resultado="/Login";
        return resultado;
    }
    public boolean verificarSesion(){
        boolean sesionValida=false;
        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado")!=null)
            sesionValida=true;
+       
        return sesionValida;
    }
+
     /**
-     * @return the nombreUs
+     * @return the usurio
      */
-    public String getNombreUs() {
-        return nombreUs;
+    public String getUsurio() {
+        return usurio;
     }
 
     /**
-     * @param nombreUs the nombreUs to set
+     * @param usurio the usurio to set
      */
-    public void setNombreUs(String nombreUs) {
-        this.nombreUs = nombreUs;
+    public void setUsurio(String usurio) {
+        this.usurio = usurio;
     }
 
     /**
-     * @return the passUs
+     * @return the contraseña
      */
-    public String getPassUs() {
-        return passUs;
+    public String getContraseña() {
+        return contraseña;
     }
 
     /**
-     * @param passUs the passUs to set
+     * @param contraseña the contraseña to set
      */
-    public void setPassUs(String passUs) {
-        this.passUs = passUs;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
-    
+  
 }

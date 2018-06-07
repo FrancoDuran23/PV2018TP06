@@ -58,6 +58,7 @@ public class ElectrodomesticoFormBean {
     public void agregarElectrodomestico(){
         setUnElectrodomestico(new Electrodomestico(getCodigo(), getTipo(), getMarca(),getFecha()));        
         setLista(getElectrodomestico().agregarElectrodomestico(getUnElectrodomestico()));
+      
     }
     /**
      * @return the codigo

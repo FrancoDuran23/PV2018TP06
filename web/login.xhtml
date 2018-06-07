@@ -17,22 +17,20 @@
                             <h:panelGrid id="tblLogin" columns="2" cellpadding="5">
                                 <p:outputLabel for="nombreUsuario" value="Nombre de Usuario:"/>
                                 <p:inputText id="nombreUsuario" required="true"
-                                             value="#{loginFormBean.nombreUs}"/>
+                                             value="#{loginFormBeans.usurio}"/>
                                 <p:outputLabel for="ContraUsuario" value="Contraseña: "/>
                                 <p:password id="ContraUsuario" required="true"
-                                             value="#{loginFormBean.passUs}"/>
+                                            value="#{loginFormBeans.contraseña}"/>
                                 <p:commandButton id="botonValidar" value="Validar Usuario"
                                                  update="frmlogin"
-                                                 action="#{loginFormBean.validarUsuario()}"/>
+                                                 action="#{loginFormBeans.validarUsuario()}"/>
                             </h:panelGrid>
 
 
 
-                        </h:form>
-
+                         </h:form>
                     </p:panel>
                 </div>
-                
             </ui:define>
             <ui:define name="top">
                 <p:outputLabel value="Inicio Sesion"/>
